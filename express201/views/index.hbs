@@ -1,0 +1,29 @@
+<h1>Handlebars File</h1>
+
+Your message is: {{msg}} ! <br>   <!--- Good for unescaped data like text or numbers --->
+Your next message is: {{msg2}} !
+
+{{{html}}}   <!--- Render escaped html data, triple brackets--->
+
+Country name: {{country.name}}<br>
+Country capital: {{country.capital}}<br><br>
+
+{{!-- each, if, unless helpers --}}    <!--- Handlebars comment to the left, this one is not --->
+<h1>each, if, unless</h1>
+{{#each otherCountries}}
+  {{#if this.western}}
+    <li>Western Country: {{this.name}} -- {{this.capital}}</li>
+  {{/if}}
+  {{#unless this.western}}  {{!-- if NOT this.western, meaning if it's false --}}
+    <li>Non-Western Country: {{this.name}} -- {{this.capital}}</li>
+  {{/unless}}   {{!-- Could have also done {{else}} instead of {{unless}} but without a condition --}}
+{{/each}}<br><br>
+
+<h1>each, if, else</h1>
+{{#each otherCountries}}
+  {{#if this.western}}
+    <li>Western Country: {{this.name}} -- {{this.capital}}</li>
+  {{ else }}  {{!-- Here the else doesn't need a '#' in front of it --}}
+    <li>Non-Western Country: {{this.name}} -- {{this.capital}}</li>
+  {{/if}}
+{{/each}}<br><br>

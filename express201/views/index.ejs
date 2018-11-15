@@ -1,0 +1,43 @@
+<% include head %>  <!--- Grab everything in 'head.ejs' and paste it here --->
+
+<!--- EJS will auto generate <body></body> and ending </html> tags for us --->
+
+<% include navbar %>  <!--- Grab everything in 'navbar.ejs' and paste it here --->
+
+<h1>Home Page</h1><br><br><br>
+
+<!--- Transpiled by NodeJS/EJS (Server-Side Rendering) --->
+<% for(let i=0; i<10; i++){ %>
+  <li><%= i %></li> <!--- 'gt%=' means print value --->
+<% } %>
+<!--- ************************ --->
+<br><br>
+
+<% for(let i=0; i<10; i++){ %>
+  <% if(i%2 === 0){txt = "even" %>
+  <% }else{ txt = "odd"} %>
+  <li><%= i %> - <%= txt %></li>
+<% } %>
+
+<br><br>
+
+<!--- Passed directly and ran by the Browser (Client-Side Rendering) --->
+<script>
+  for(let i=0; i<10; i++){
+    document.write(`<li>Test</li>`);
+  }
+</script>
+<!--- ************************* --->
+
+<!--- Printing json data passed on 'ejsPractice.js' (Server-Side Rendering) --->
+<h1>Printing data below, data passed on res.locals by the node server JS code</h1>
+<h2><%= msg %></h2>   <!--- Same as lt%= locals.msg %gt --->
+<h2><%= msg2 %></h2>  <!--- Same as lt%= locals.msg2 %gt,  '=' is good for non-escaped data like text or numbers --->
+<h2><%= "Result: " + locals.validated %></h2> <!--- Same as lt%= validated %gt --->
+
+<h1>base64 encoded Image below</h1>
+<%- html %>  <!--- the '-' tells EJS to interpret html code instead of treating it like a string --->
+             <!--- Only way to make escaped data be evaluated then print it --->
+
+<%# This is a comment in EJS and won't show up in the DOM %>
+<!--- This is a comment also but will show up in the DOM --->
